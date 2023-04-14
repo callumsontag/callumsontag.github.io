@@ -9,6 +9,16 @@
         table, th, td {
             border: 1px solid;
         }
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #watermark {
+            padding-top: 8px;
+            font-size: 12px;
+        }
+        #show {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
@@ -22,7 +32,7 @@
     </div>
     <div id="tableContainer">
     </div>
-    <div>Last updated 14/04 17:47</div>
+    <div id="watermark">Website last updated 14/04 18:58</div>
 </body>
 <script>
     const horses = ['Any Second Now', 'Noble Yeats', 'Galvin', 'Fury Road', 'The Big Dog', 'Capodanno', 'Delta Work', 'Sam Brown',
@@ -35,7 +45,7 @@
     'Connor', 'Luke', 'Rosie', 'Ev', 'Matt', 'Natalie', 'Chris', 'Sam',
     'Abbie', 'Ellis', 'Bill C', 'Harry S', 'Lauren', 'Mason', 'Taylor', 'Court',
     'Ali', 'Charlotte', 'Harry L', 'Dannii', 'Ant', 'Amity', 'Lee W', 'Mandy', 
-    'Brian', 'Olive', 'Louis', 'Katie M', 'Faye', 'example38', 'example39', 'example40']
+    'Brian', 'Olive', 'Louis', 'Katie M', 'Faye', 'Pete', 'Tracey', 'Albie']
 
     const shuffled = horses.sort(() => {
         const randomTrueOrFalse = Math.random() > 0.5;
@@ -92,12 +102,9 @@
             const pairs = randomHorseGen(shuffledHorses, people)
             generateTable(pairs)
             waiting.innerHTML = ""
-        }, 5000)
+        }, 4000)
     })
 
-
-
-    
 
 </script>
 </html>
