@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Callum's Grand National Sweepstake
+    </h1>
+    <button id="show">
+        Show
+    </button>
+    <div id="waiting">
+    </div>
+    <div id="tableContainer">
+    </div>
+</body>
+<script>
+    const horses = ['Any Second Now', 'Noble Yeats', 'Galvin', 'Fury Road', 'The Big Dog', 'Capodanno', 'Delta Work', 'Sam Brown',
+    'Lifetime Ambition', 'Carefully Selected', 'Coko Beach', 'Longhouse Poet', 'Gallard Du Mensil', 'Darasso', 'Le Milos', 'Escaria Ten'
+    , 'The Big Breakaway', 'Cape Gentleman', 'Roi Mage', 'Dior Ker', 'A Wave Of The Sea', 'Minella Trump', 'Vanillier', 'Velvet Elvis', 
+    'Aint That A Shame', 'Corach Rambler', 'Ejoy D allen', 'Mr Incredible', 'Mister Coffey', 'Cloudy Glen', 'Hill Sixteen', 'Gabbys Cross'
+    , 'Recite A Prayer', 'Evas Oskar', 'Our Power', 'Dunbonye', 'Francky Du Berlais', 'Fortescue', 'Back On The Lash', 'Born By The Sea']
+
+    const people = ['Callum', 'Brooke', 'Stefan', 'Dan', 'Callie', 'Bill W', 'Jessie', 'Megan',
+    'Connor', 'Luke', 'Rosie', 'Ev', 'Matt', 'Natalie', 'Chris', 'Sam',
+    'Abbie', 'Ellis', 'Bill C', 'Harry S', 'Lauren', 'Mason', 'Taylor', 'Court',
+    'Ali', 'Charlotte', 'Harry L', 'Dannii', 'Ant', 'Amity', 'Lee W', 'Mandy', 
+    'Brian', 'Olive', 'Louis', 'example36', 'example37', 'example38', 'example39', 'example40']
+
+    const shuffled = horses.sort(() => {
+        const randomTrueOrFalse = Math.random() > 0.5;
+        return randomTrueOrFalse ? 1 : -1
+    });
+
+    const shuffleList = (list) => {
+        return list.sort(() => {
+            const randomTrueOrFalse = Math.random() > 0.5;
+            return randomTrueOrFalse ? 1 : -1
+        });
+    }
+
+    const randomHorseGen = (horse, person) => {
+        const peopleArray = []
+        for (let i = 0; i < person.length; i++){
+            peopleArray.push({
+                person: person[i],
+                horse: horse[i]
+            })   
+            }
+        return peopleArray
+        }
+
+    const createRow = (pair) => {
+        const tr = document.createElement('tr')
+        const htmlString = `<td>${pair.person}</td><td>${pair.horse}</td>`
+        tr.innerHTML = htmlString
+        return tr
+    }
+
+    const generateTable = (pairs) => {
+        const tableContainer = document.querySelector('#tableContainer')
+        tableContainer.innerHTML = `<table><tr><th>Person Name</th><th>Horse Name</th></tr></table>`
+        const table = document.querySelector('table')
+        for (let i = 0; i < pairs.length; i++){
+            const row = createRow(pairs[i])
+            table.append(row)
+        }
+    }
+
+    const clearTable = () => {
+        const container = document.querySelector('#tableContainer')
+        container.innerHTML = ""
+    }
+
+    const showButton = document.querySelector('#show')
+    showButton.addEventListener('click', () => {
+        clearTable()
+        const waiting = document.querySelector('#waiting')
+        waiting.innerHTML = '<img src="https://media.tenor.com/MFE6UiMEpRoAAAAM/math-zack-galifianakis.gif">'
+        setTimeout(() => {
+            const shuffledHorses = shuffleList(horses)
+            const pairs = randomHorseGen(shuffledHorses, people)
+            generateTable(pairs)
+            waiting.innerHTML = ""
+        }, 5000)
+    })
+
+
+
+    
+
+</script>
+</html>
